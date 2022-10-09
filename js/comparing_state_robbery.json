@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "States current Robbery rates.",
+  "data": {"url": "https://raw.githubusercontent.com/ryanhaqueIT/DataViz/main/data/comparing_state.csv"},
+  "mark": "line",
+  "params": [
+    {
+    "name": "State_selection",
+    "bind": {
+      "input": "select",
+      "options": [
+          null,
+          "ACT",
+          "NSW",
+          "NT",
+          "QLD",
+          "SA",
+          "VIC",
+          "WA"
+      ],
+      "labels":[
+        "Show All",
+        "ACT",
+        "NSW",
+        "NT",
+        "QLD",
+        "SA",
+        "VIC",
+        "WA"
+      ],
+      "name": "State Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "State_selection == null || datum.State == State_selection"}
+  ],
+  "encoding": {
+    "x": {"field": "Year", "type": "temporal"},
+    "y": {"field": "Robbery", "type": "quantitative"},
+    "color": {"field": "State", "type": "nominal"}
+  }
+}
